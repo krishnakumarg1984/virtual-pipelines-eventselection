@@ -21,6 +21,62 @@
       "options": {
         "cwd": "${workspaceFolder}"
       }
+    },
+    {
+      "label": "Bash: run current file",
+      "type": "shell",
+      "command": "/usr/bin/env",
+      "args": ["bash", "${file}"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "focus": true,
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Python: current file",
+      "type": "shell",
+      // "command": "${command:python.interpreterPath}",
+      "command": "python",
+      "args": ["${file}"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "focus": true,
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Pytest: current file",
+      "type": "shell",
+      // "command": "${command:python.interpreterPath}",
+      "command": "pytest",
+      "args": ["${file}"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "focus": true,
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
     }
   ]
 }
