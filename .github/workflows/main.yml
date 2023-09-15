@@ -40,9 +40,9 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: skim6.26.10-conda
-      - name: access control
-        run: printf "${{ secrets.USER_PASS }}" | base64 -d | kinit "${{ secrets.USER_NAME }}@vt.edu"
+      # - name: access control
+      #   run: printf "${{ secrets.USER_PASS }}" | base64 -d | kinit "${{ secrets.USER_NAME }}@vt.edu"
       - name: skim
         run: |
           chmod +x ./skim
-          ./skim root://eosuser.cern.ch//eos/user/g/gstark/AwesomeWorkshopFeb2020/GluGluToHToTauTau.root skim_ggH.root 19.6 11467.0 0.1
+          ./skim root://eospublic.cern.ch//eos/root-eos/HiggsTauTauReduced/GluGluToHToTauTau.root skim_ggH.root 19.6 11467.0 0.1
