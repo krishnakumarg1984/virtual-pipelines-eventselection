@@ -56,7 +56,9 @@ jobs:
           name: histograms
           path: hist_ggH.root
   test_ggH:
-    needs: plot
+    needs:
+      - plot
+      - skim
     runs-on: ubuntu-latest
     container: rootproject/root:6.26.10-conda
     steps:
