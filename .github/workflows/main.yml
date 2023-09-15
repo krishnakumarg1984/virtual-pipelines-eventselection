@@ -1,22 +1,9 @@
 name: example
 on: push
 jobs:
-  greeting:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo hello world
   build_skim:
-    needs: greeting
     runs-on: ubuntu-latest
-    container: rootproject/root:${{ matrix.version }}
-    continue-on-error: ${{ matrix.allow_failure }}
-    strategy:
-      matrix:
-        version: ['6.26.10-conda']
-        allow_failure: [false]
-        include:
-          - version: 'latest'
-            allow_failure: true
+    container: rootproject/root:6.26.10-conda
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
@@ -28,7 +15,7 @@ jobs:
           "$COMPILER" -g -O3 -Wall -Wextra -Wpedantic -o skim skim.cxx $FLAGS
       - uses: actions/upload-artifact@v3
         with:
-          name: skim${{ matrix.version }}
+          name: skim6.26.10-conda
           path: skim
   skim:
     needs: build_skim
@@ -50,3 +37,19 @@ jobs:
         with:
           name: skim_ggH
           path: skim_ggH.root
+  plot:
+    needs: skim
+    runs-on: ubuntu-latest
+    container: rootproject/root:6.26.10
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: skim_ggH
+      - name: histogram
+        run: python histograms.py skim_ggH.root ggH hist_ggH.root
+      - uses: actions/upload-artifact@v3
+        with:
+          name: histograms
+          path: hist_ggH.root
