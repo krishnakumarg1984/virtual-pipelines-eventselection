@@ -56,9 +56,7 @@ jobs:
           name: histograms
           path: hist_ggH.root
   test_ggH:
-    needs:
-      - plot
-      - skim
+    needs: plot
     runs-on: ubuntu-latest
     container: rootproject/root:6.26.10-conda
     steps:
@@ -72,7 +70,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: histograms
-      - name: test_cutflow_ggH
+      - name: cutflow test
         run: python tests/test_cutflow_ggH.py
-      - name: test_plot_ggH
+      - name: plot test
         run: python tests/test_plot_ggH.py
