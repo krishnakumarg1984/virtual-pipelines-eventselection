@@ -64,11 +64,14 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - name: Download from skim
+        uses: actions/download-artifact@v3
         with:
-          name: |
-            skim_ggH
-            histograms
+          name: skim_ggH
+      - name: Download from plot
+        uses: actions/download-artifact@v3
+        with:
+          name: histograms
       - name: test_cutflow_ggH
         run: python tests/test_cutflow_ggH.py
       - name: test_plot_ggH
