@@ -40,6 +40,8 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: skim6.26.10-conda
+      - name: access control
+        run: printf ${{ secrets.USER_PASS }} | base64 -d | kinit ${{ secrets.USER_NAME }}@vt.edu
       - name: skim
         run: |
           chmod +x ./skim
