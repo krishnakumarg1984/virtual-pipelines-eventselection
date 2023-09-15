@@ -42,5 +42,5 @@ jobs:
           name: skim6.26.10-conda
       - name: skim
         run: |
-          chmod +x ./skim root://eosuser.cern.ch//eos/user/g/gstark/AwesomeWorkshopFeb2020/GluGluToHToTauTau.root skim_ggH.root 19.6 11467.0 0.1
-          ./skim
+          chmod +x ./skim
+          ./skim root://eosuser.cern.ch//eos/user/g/gstark/AwesomeWorkshopFeb2020/GluGluToHToTauTau.root skim_ggH.root 19.6 11467.0 0.1
